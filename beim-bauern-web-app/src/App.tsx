@@ -1,9 +1,11 @@
 import React from "react";
-import { useSites } from "./hooks/sites";
+import { useSite } from "./hooks/sites";
 
 function App() {
-  const [sites, loading] = useSites("");
-  return loading ? <p>loading...</p> : <pre>{JSON.stringify(sites)}</pre>;
+  const { site, error } = useSite("2ZAkOOHiiKFN5ZxdhMO");
+  if (error) return <p>{error}</p>;
+  if (!site) return <p>loading...</p>;
+  return <pre>{JSON.stringify(site)}</pre>;
 }
 
 export default App;
